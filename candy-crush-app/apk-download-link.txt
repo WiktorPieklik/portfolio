@@ -1,0 +1,4 @@
+The .apk file is too big to store it on github.
+If you want to try this app, download .apk from the link below and install it on Android device.
+
+Link with app: https://drive.google.com/file/d/1PGZvpSZ6pIkb3xy3E8n9luy2pNgAFl8M/view?usp=sharing
