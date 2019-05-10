@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Drink Shop</string>
+    <string name="btn_contiune">Continue</string>
+    <string name="btn_register">Register</string>
+    <string name="btn_add_to_card">Add to card</string>
+    <string name="edt_comment_hint">Comment</string>
+    <string name="popularProducts">OUR POPULAR PRODUCTS</string>
+    <string name="card_sizes">Choose cup size</string>
+    <string name="card_sugar">Choose Sugar</string>
+    <string name="card_ice">Choose Ice</string>
+    <string name="card_topping">Topping</string>
+    <string name="extra_toppings">Topping extras</string>
+    <string name="required">REQUIRED</string>
+    <string name="radio_sizeM">Size M</string>
+    <string name="radio_sizeL">Size L</string>
+    <string name="radio_sugar100">100%</string>
+    <string name="radio_sugar70">70%</string>
+    <string name="radio_sugar50">50%</string>
+    <string name="radio_sugar30">30%</string>
+    <string name="radio_sugarfree">free</string>
+    <string name="radio_ice100">100%</string>
+    <string name="radio_ice70">70%</string>
+    <string name="radio_ice50">50%</string>
+    <string name="radio_ice30">30%</string>
+    <string name="radio_icefree">free</string>
+    <string name="check_box_drink">Drink</string>
+    <string name="place_order">Place order</string>
+
+
+    <string name="FACEBOOK_APP_ID">432171870685472</string>
+    <string name="ACCOUNT_KIT_CLIENT_TOKEN">930ef8a52afae61f7723606b93160b02</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+</resources>
