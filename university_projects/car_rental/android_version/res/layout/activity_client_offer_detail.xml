@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:columnCount="2"
+    android:rowCount="10"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingBottom="15dp">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#ffffff"
+        android:layout_columnSpan="2"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/purchaseDateTxt"
+        android:layout_column="0"
+        android:text="Brak daty"
+        android:textColor="#ffffff"
+        android:textSize="22sp"
+        android:layout_gravity="left"
+        android:fontFamily="@font/capriola"/>
+
+    <Button
+        android:id="@+id/dateOfPurchaseButton"
+        android:layout_column="1"
+        android:layout_width="210dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/red"
+        android:textColor="#ffffff"
+        android:fontFamily="@font/capriola"
+        android:text="Data wypożyczenia"
+        android:textStyle="bold"
+        android:onClick="pickPurchaseDate"
+        android:layout_gravity="right"
+        android:layout_marginRight="5dp"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/returnDateTxt"
+        android:layout_column="0"
+        android:text="Brak daty"
+        android:textColor="#ffffff"
+        android:textSize="22sp"
+        android:layout_gravity="left"
+        android:fontFamily="@font/capriola"/>
+
+    <Button
+        android:id="@+id/dateOfReturnButton"
+        android:layout_width="210dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/red"
+        android:textColor="#ffffff"
+        android:fontFamily="@font/capriola"
+        android:text="Data zwrotu"
+        android:textStyle="bold"
+        android:onClick="pickReturnDate"
+        android:layout_gravity="right"
+        android:layout_marginRight="5dp"
+        android:gravity="center"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/capriola"
+        android:hint="Targuj upust"
+        android:textColor="#ffffff"
+        android:textColorHint="#ffffff"
+        android:inputType="number|text"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_columnSpan="2"
+        android:id="@+id/discountET"
+        android:layout_marginBottom="15dp"/>
+
+    <Button
+        android:id="@+id/calculateButton"
+        android:layout_width="210dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/red"
+        android:textColor="#ffffff"
+        android:fontFamily="@font/capriola"
+        android:text="Oblicz koszt"
+        android:layout_column="1"
+        android:textStyle="bold"
+        android:onClick="calculate"
+        android:layout_gravity="right"
+        android:layout_marginRight="5dp"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/capriola"
+        android:text="Suma"
+        android:textColor="#ffffff"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_column="0"
+        android:layout_gravity="left"
+        android:id="@+id/sum"
+        android:layout_marginTop="3dp"/>
+
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#ffffff"
+        android:layout_columnSpan="2"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/capriola"
+        android:text="marka"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="15dp"
+
+        android:layout_column="0"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/offerDetailBrand"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/capriola"
+        android:text="model"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_column="1"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/offerDetailModel"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/capriola"
+        android:text="rok"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:layout_marginLeft="15dp"
+
+        android:textStyle="bold"
+        android:layout_column="0"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/offerDetailProductionYear"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/capriola"
+        android:text="przebieg"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_column="1"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/offerDetailMilleage"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/capriola"
+        android:text="pojemnosc"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="15dp"
+
+        android:layout_column="0"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/offerDetailCapacity"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/capriola"
+        android:text="km"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_column="1"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/offerDetailPowerhorse"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/capriola"
+        android:text="paliwo"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_column="0"
+        android:layout_marginLeft="15dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/offerDetailFuelType"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/capriola"
+        android:text="skrzynia"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_column="1"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/offerDetailGearbox"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/capriola"
+        android:text="cena"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_columnSpan="2"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/offerDetailPrice"
+        android:layout_marginTop="15dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#ffffff"
+        android:layout_columnSpan="2"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/grantDiscountButton"
+        android:layout_width="352dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/red"
+        android:textColor="#ffffff"
+        android:fontFamily="@font/capriola"
+        android:text="Zamów"
+        android:textStyle="bold"
+        android:onClick="makeOrder"
+        android:layout_row="9"
+        android:layout_columnSpan="2"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"/>
+
+</GridLayout>

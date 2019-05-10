@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="match_parent"
+        android:id="@+id/background"
+        android:layout_height="match_parent"
+        android:src="@drawable/welcome_screen"
+        android:scaleType="centerCrop" />
+
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.ClientActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/clientMainContainer"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Oferty"
+        android:id="@+id/offerTxt"
+        android:visibility="invisible"
+        android:layout_gravity="bottom|right"
+        android:textSize="22sp"
+        android:textColor="#ffffff"
+        android:fontFamily="@font/capriola"
+        android:layout_marginRight="110dp"
+        android:layout_marginBottom="275dp"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_height="65dp"
+        android:layout_width="65dp"
+        android:visibility="gone"
+        android:layout_gravity="bottom|end"
+        app:backgroundTint="@color/lightBlue"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="255dp"
+        android:src="@drawable/store"
+        android:id="@+id/offersFabButton"
+        app:elevation="10dp"
+        android:onClick="fabClicked2"
+        app:pressedTranslationZ="15dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zamówienia"
+        android:visibility="invisible"
+        android:id="@+id/orderTxt"
+        android:layout_gravity="bottom|right"
+        android:textSize="22sp"
+        android:textColor="#ffffff"
+        android:fontFamily="@font/capriola"
+        android:layout_marginRight="105dp"
+        android:layout_marginBottom="200dp"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_height="65dp"
+        android:layout_width="65dp"
+        android:visibility="gone"
+        android:layout_gravity="bottom|end"
+        app:backgroundTint="@color/lightBlue"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="180dp"
+        android:src="@drawable/shopping_basket"
+        android:id="@+id/ordersFabButton"
+        app:elevation="10dp"
+        android:onClick="fabClicked2"
+        app:pressedTranslationZ="15dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Moje konto"
+        android:visibility="invisible"
+        android:id="@+id/accountTxt"
+        android:layout_gravity="bottom|right"
+        android:textSize="22sp"
+        android:textColor="#ffffff"
+        android:fontFamily="@font/capriola"
+        android:layout_marginRight="105dp"
+        android:layout_marginBottom="125dp"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_height="65dp"
+        android:layout_width="65dp"
+        android:visibility="gone"
+        android:layout_gravity="bottom|end"
+        app:backgroundTint="@color/lightBlue"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="105dp"
+        android:src="@drawable/account"
+        android:id="@+id/myAccountFabButton"
+        app:elevation="10dp"
+        android:onClick="fabClicked2"
+        app:pressedTranslationZ="15dp"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_height="55dp"
+        android:layout_width="55dp"
+        android:layout_gravity="bottom|end"
+        app:backgroundTint="@color/red"
+        android:layout_marginRight="35dp"
+        android:layout_marginBottom="35dp"
+        android:src="@drawable/ic_fab_action"
+        android:id="@+id/mainFabButton"
+        android:elevation="10dp"
+        android:onClick="fabClicked"
+        app:pressedTranslationZ="15dp"/>
+
+</android.support.design.widget.CoordinatorLayout>
+</FrameLayout>

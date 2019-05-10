@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#00000000"
+    android:padding="5dp"
+    android:layout_marginTop="20dp"
+    android:layout_gravity="center"
+    android:gravity="center">
+
+
+    <Button
+        android:id="@+id/showOffersButton"
+        style="@android:style/Widget.Button"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/button_style"
+        android:backgroundTint="@color/red"
+        android:drawableLeft="@drawable/store"
+        android:fontFamily="@font/capriola"
+        android:paddingLeft="5dp"
+        android:text="@string/showOffers"
+        android:textColor="#ffffff"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/addOfferButton"
+        style="@android:style/Widget.Button"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button_style"
+        android:backgroundTint="@color/red"
+        android:drawableLeft="@drawable/plus"
+        android:fontFamily="@font/capriola"
+        android:paddingLeft="5dp"
+        android:text="@string/addOffer"
+        android:textColor="#ffffff"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/addCarButton"
+        style="@android:style/Widget.Button"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button_style"
+        android:backgroundTint="@color/red"
+        android:drawableLeft="@drawable/add_car"
+        android:fontFamily="@font/capriola"
+        android:paddingLeft="5dp"
+        android:text="@string/addCar"
+        android:textColor="#ffffff"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/showCarsButton"
+        style="@android:style/Widget.Button"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button_style"
+        android:backgroundTint="@color/red"
+        android:drawableLeft="@drawable/preview"
+        android:fontFamily="@font/capriola"
+        android:paddingLeft="5dp"
+        android:text="@string/showCars"
+        android:textColor="#ffffff"
+        android:textStyle="bold" />
+
+
+</LinearLayout>

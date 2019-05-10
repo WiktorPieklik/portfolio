@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/welcome_screen"
+        android:scaleType="centerCrop"
+        android:alpha="0.75"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="40dp">
+
+        <EditText
+            android:id="@+id/cNameET"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="11dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:enabled="false"
+            android:fontFamily="@font/capriola"
+            android:hint="@string/imie"
+            android:inputType="textCapWords"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/cSurnameET"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:ems="10"
+            android:enabled="false"
+            android:fontFamily="@font/capriola"
+            android:hint="@string/nazwisko"
+            android:inputType="textCapWords"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/cPhoneNoET"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:ems="10"
+            android:enabled="false"
+            android:fontFamily="@font/capriola"
+            android:hint="@string/nrTel"
+            android:inputType="phone"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/cIdNoET"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:ems="10"
+            android:enabled="false"
+            android:fontFamily="@font/capriola"
+            android:hint="@string/dowod"
+            android:inputType="text"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/cEmailET"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:enabled="false"
+            android:fontFamily="@font/capriola"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/cLoginET"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="9dp"
+            android:ems="10"
+            android:enabled="false"
+            android:fontFamily="@font/capriola"
+            android:hint="@string/rLogin"
+            android:inputType="text"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/cPasswordET"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:enabled="false"
+            android:fontFamily="@font/capriola"
+            android:hint="@string/rPassword"
+            android:inputType="text"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="15dp"/>
+
+        <Button
+            android:id="@+id/clientEditButton"
+            android:layout_width="203dp"
+            android:layout_height="34dp"
+            android:layout_marginBottom="84dp"
+            android:background="@color/cardview_shadow_start_color"
+            android:fontFamily="@font/capriola"
+            android:onClick="editClientData"
+            android:text="@string/editButton"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:layout_marginRight="15dp"/>
+
+        <Button
+            android:id="@+id/clientSaveButton"
+            android:layout_width="203dp"
+            android:layout_height="34dp"
+            android:layout_marginBottom="84dp"
+            android:background="@color/red"
+            android:fontFamily="@font/capriola"
+            android:onClick="saveClientData"
+            android:text="@string/saveButton"
+            android:visibility="gone"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:layout_marginRight="15dp"/>
+
+    </LinearLayout>
+</FrameLayout>
+

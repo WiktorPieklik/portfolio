@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">Wypożyczalnia samochodów</string>
+    <string name="loginButton">Zaloguj</string>
+    <string name="registerButton">Zarejestruj się</string>
+    <string name="loginHint">Login</string>
+    <string name="passwordHint">Hasło</string>
+    <string name="imie">Imię</string>
+    <string name="nazwisko">Nazwisko</string>
+    <string name="nrTel">Nr telefonu</string>
+    <string name="dowod">Nr dowodu osobistego</string>
+    <string name="dowodShort">Nr dowodu</string>
+    <string name="email">Adres email</string>
+    <string name="rLogin">Login</string>
+    <string name="rPassword">Hasło</string>
+    <string name="rShowPassword">Pokaż hasło</string>
+    <string name="exit">Naciśnij jeszcze raz aby wyjść</string>
+    <string name="loginInUse">Login zajęty!</string>
+    <string name="error">Coś nie działa, lol</string>
+    <string name="ownerActivity">Panel administratora</string>
+    <string name="offers">Oferty</string>
+    <string name="deleteAccount">Usuń konto</string>
+    <string name="users">Użytkownicy</string>
+    <string name="orders">Zamówienia</string>
+    <string name="infos">Informacje</string>
+    <string name="offersDescription">Dodaj ofertę\nDodaj auto\nPrzeglądaj auta</string>
+    <string name="usersDescription">Zobacz wszystkich\n zarejestrowanych\nużytkowników</string>
+    <string name="ordersDescription">Zobacz wszystkie złożone zamówienia</string>
+    <string name="addOffer">Dodaj ofertę</string>
+    <string name="addCar">Dodaj auto</string>
+    <string name="showCars">Przeglądaj auta</string>
+    <string name="showOffers">Pokaż oferty</string>
+    <string name="carBrand">Marka</string>
+    <string name="carModel">Model</string>
+    <string name="productionYear">Rok produkcji</string>
+    <string name="milleage">Przebieg (km)</string>
+    <string name="capacity">Pojemność (l)</string>
+    <string name="powerHorse">KM</string>
+    <string name="fuelType">Typ paliwa</string>
+    <string name="gearboxType">Typ skrzyni</string>
+    <string name="numberPlate">Nr rejestracyjny</string>
+    <string name="editButton">Edytuj</string>
+    <string name="saveButton">Zapisz</string>
+    <string name="carDetailsActivity">Szczegóły auta</string>
+    <string name="deleteCarAction">Usuń auto</string>
+    <string name="deleteOfferAction">Usuń ofertę</string>
+    <string name="offerDetailsActivity">Szczegóły oferty</string>
+    <string name="dostepneAuta">Dostępne auta</string>
+    <string name="cenaOferty">Cena oferty</string>
+    <string name="dateOfPurchase">Od</string>
+    <string name="dateOfReturn">Do</string>
+    <string name="discount">Upust</string>
+    <string name="grantDiscount">Przyznaj upust</string>
+    <string name="returnOffer">Przywróc ofertę</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/blueAccent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:text="@string/dostepneAuta"
+        android:textSize="24sp"
+        android:fontFamily="@font/capriola"
+        android:textStyle="bold"/>
+    <Spinner
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/carsSpinner"
+        android:backgroundTint="#ffffff"/>
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/addOfferPriceET"
+        android:inputType="number|text"
+        android:fontFamily="@font/capriola"
+        android:textColor="@color/red"
+        android:backgroundTint="@color/lightGray"
+        android:hint="@string/cenaOferty"
+        android:textColorHint="#ffffff" />
+    <Button
+        android:id="@+id/addOfferButton"
+        style="@android:style/Widget.Button"
+        android:layout_marginTop="100dp"
+        android:layout_width="237dp"
+        android:layout_height="34dp"
+        android:layout_marginBottom="39dp"
+        android:background="@color/red"
+        android:fontFamily="@font/capriola"
+        android:text="@string/addOffer"
+        android:textAppearance="@android:style/TextAppearance.Medium"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:onClick="addOffer"/>
+
+</LinearLayout>

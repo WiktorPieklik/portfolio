@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:columnCount="2"
+    android:rowCount="10"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="15dp"
+    android:paddingBottom="15dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/capriola"
+        android:text="@string/carBrand"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:fontFamily="@font/capriola"
+        android:textColor="#ffffff"
+        android:layout_gravity="right"
+        android:id="@+id/brandET"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/capriola"
+        android:text="@string/carModel"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:fontFamily="@font/capriola"
+        android:textColor="#ffffff"
+        android:layout_gravity="right"
+        android:id="@+id/modelET"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/capriola"
+        android:text="@string/productionYear"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:fontFamily="@font/capriola"
+        android:textColor="#ffffff"
+        android:layout_gravity="right"
+        android:id="@+id/productionYearET"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/capriola"
+        android:text="@string/milleage"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="number|text"
+        android:fontFamily="@font/capriola"
+        android:textColor="#ffffff"
+        android:layout_gravity="right"
+        android:id="@+id/milleageET"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/capriola"
+        android:text="@string/capacity"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="number|text"
+        android:fontFamily="@font/capriola"
+        android:textColor="#ffffff"
+        android:layout_gravity="right"
+        android:id="@+id/capacityET"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/capriola"
+        android:text="@string/powerHorse"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:fontFamily="@font/capriola"
+        android:textColor="#ffffff"
+        android:layout_gravity="right"
+        android:id="@+id/powerHorseET"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/capriola"
+        android:text="@string/fuelType"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:fontFamily="@font/capriola"
+        android:textColor="#ffffff"
+        android:layout_gravity="right"
+        android:id="@+id/fuelTypeET"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/capriola"
+        android:text="@string/gearboxType"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:fontFamily="@font/capriola"
+        android:textColor="#ffffff"
+        android:layout_gravity="right"
+        android:id="@+id/gearboxTypeET"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/capriola"
+        android:text="@string/numberPlate"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/capriola"
+        android:inputType="text"
+        android:textColor="#ffffff"
+        android:layout_gravity="right"
+        android:id="@+id/numberPlateET"/>
+
+
+    <Button
+        android:id="@+id/addCarButton"
+        android:layout_width="352dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/red"
+        android:textColor="#ffffff"
+        android:fontFamily="@font/capriola"
+        android:text="@string/saveButton"
+        android:textStyle="bold"
+        android:onClick="addCar"
+        android:layout_row="9"
+        android:layout_columnSpan="2"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"/>
+
+</GridLayout>

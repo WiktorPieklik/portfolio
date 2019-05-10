@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/welcome_screen"
+        android:scaleType="centerCrop"/>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.LoginActivity">
+
+    <Button
+        android:id="@+id/registerButton"
+        style="@android:style/Widget.Button"
+        android:layout_width="237dp"
+        android:layout_height="34dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="39dp"
+        android:background="@color/red"
+        android:fontFamily="@font/capriola"
+        android:text="@string/registerButton"
+        android:textAppearance="@android:style/TextAppearance.Medium"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:onClick="startRegister"/>
+
+
+    <Button
+        android:id="@+id/loginButton"
+        style="@android:style/Widget.Button"
+        android:layout_width="237dp"
+        android:layout_height="34dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="90dp"
+        android:background="@color/cardview_shadow_start_color"
+        android:fontFamily="@font/capriola"
+        android:text="@string/loginButton"
+        android:textAppearance="@android:style/TextAppearance.Medium"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:onClick="logInAction"/>
+
+    <EditText
+        android:id="@+id/loginEditText"
+        android:layout_width="237dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="@string/loginHint"
+        android:inputType="text"
+        android:textAlignment="textStart"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:textColor="#ffffff"
+        android:textColorHint="#ffffff" />
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="237dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loginEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="205dp"
+        android:ems="10"
+        android:hint="@string/passwordHint"
+        android:inputType="textPassword"
+        android:textAlignment="textStart"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:textColor="#ffffff"
+        android:textColorHint="#ffffff" />
+</RelativeLayout>
+</FrameLayout>
