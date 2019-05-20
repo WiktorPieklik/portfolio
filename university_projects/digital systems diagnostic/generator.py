@@ -11,7 +11,7 @@ class EncodingType(Enum):
 class Generator:
     """
     Konstruktor klasy Generatora
-    :param data_size: Określa wielkość generowanych danych, domyślnie 7 bitów
+    :param data_size: Określa wielkość generowanych danych, domyślnie 10 bitów
     :param data_type: Określa rodzaj kodowania informacji, domyślnie kodowanie Hamminga
     """
     def __init__(self, data_size=10, data_type=EncodingType.CONVOLUTIONAL):
