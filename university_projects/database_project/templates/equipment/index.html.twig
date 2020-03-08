@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% for equipment in equipments %}
+        <div class="card m-md-2">
+            <div class="card-body">
+                <h5 class="card-title">{{ equipment.name }}</h5>
+                <p class="card-text">{{ equipment.description }}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item font-weight-light">Rodzaj: {{ equipment.type.type }}</li>
+                <li class="list-group-item">Cena za dzień: {{ equipment.price }} zł</li>
+                <li class="list-group-item">Przebieg: {{ equipment.milleage }} km</li>
+            </ul>
+            <div class="card-body">
+                {% if isGranted('role_user') %}
+                    <form class="float-left mr-2" action="{{ url("equipment_addToBasket", {"e_id": equipment.id, "dep_id": equipment.department.id}) }}" method="post">
+                        <button type="submit" class="btn btn-outline-primary">Dodaj do koszyka</button>
+                    </form>
+                {% else %}
+                    <div class="alert alert-info" style="width: 29rem;" role="alert">
+                        Aby wypożyczyć lub zarezerwować musisz się <a href="{{ url("app_login") }}" class="alert-link">zalogować</a>.
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% else %}
+        <span class="badge badge-pill badge-info">Ups, stacja nie ma żadnego dostępnego sprzętu :(</span>
+    {% endfor %}
+{% endblock %}

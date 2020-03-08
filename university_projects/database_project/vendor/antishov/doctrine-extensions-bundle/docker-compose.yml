@@ -1,0 +1,10 @@
+version: "3.3"
+services:
+  php7.1:
+    build:
+      context: .
+      dockerfile: ./.docker/php7.1/Dockerfile
+  php7.2:
+    build:
+      context: .
+      dockerfile: ./.docker/php7.2/Dockerfile

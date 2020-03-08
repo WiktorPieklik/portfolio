@@ -1,0 +1,29 @@
+<ul class="nav nav-pills mb-5">
+    <li class="nav-item">
+        <a class="nav-link active" href="{{ url('department_index') }}">Strona główna</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url("user_myorders", {"id": id}) }}">Aktywne wypożyczenia</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url("user_myfinishedorders", {"id": id}) }}">Historia wypożyczeń</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url("user_myreservations", {"id": id}) }}">Moje rezerwacje</a>
+    </li>
+
+    {% if basketCount() > 0 %}
+        <li class="nav-item">
+            <a href="{{ url("basket_index") }}" class="btn btn-outline-primary" role="button">
+                Koszyk <span class="badge badge-pill badge-primary">{{ basketCount() }}</span>
+            </a>
+        </li>
+    {% endif %}
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('user_logout') }}">Wyloguj się</a>
+    </li>
+</ul>

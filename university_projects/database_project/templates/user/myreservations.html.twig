@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% set counter = -1 %}
+    <h2>Moje rezerwacje</h2>
+    {% if myReservations | length > 0 %}
+        <div class="accordion" id="accordionExample">
+    {% endif %}
+    {% include 'user/order_body.html.twig' with {"myOrders": myReservations, "description": description,
+        "title1": 'Zarezerwowane', "title2": "Rezerwacja", "isOrder": false} %}
+    {% if myReservations | length > 0 %}
+    </div>
+    {% endif %}
+{% endblock %}

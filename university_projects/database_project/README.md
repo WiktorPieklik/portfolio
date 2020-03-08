@@ -1,4 +1,4 @@
-# Database 2 university project
+# Projekt z baz danych 2
 
 ## Tech stack
 

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <nav>
+        <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-damageReports" role="tab" aria-controls="nav-home" aria-selected="true">
+                Zgłoszenia awarii {{ (damageReportsCount() > 0)? ("<span class=\"badge badge-pill badge-primary\"\>"~damageReportsCount()~"</span>")|raw: '' }}
+            </a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-Repair" role="tab" aria-controls="nav-profile" aria-selected="false">
+                Zlecenia przeglądu {{ (serviceReportsCount() > 0)? ("<span class=\"badge badge-pill badge-primary\"\>"~serviceReportsCount()~"</span>")|raw: '' }}
+            </a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-transportOrder" role="tab" aria-controls="nav-contact" aria-selected="false">
+                Zlecenia przewozu</a>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-damageReports" role="tabpanel" aria-labelledby="nav-home-tab">
+            {% if damageReports | length > 0 %}
+                <div class="accordion" id="accordionExample">
+            {% endif %}
+            {% include 'serviceman/damageReportBody.html.twig' with {"damageReports": damageReports} %}
+            {% if damageReports | length > 0 %}
+                </div>
+            {% endif %}
+        </div>
+        <div class="tab-pane fade" id="nav-Repair" role="tabpanel" aria-labelledby="nav-profile-tab">
+            {% if serviceReports | length > 0 %}
+                <div class="accordion" id="accordionExample">
+            {% endif %}
+            {% include 'serviceman/serviceBody.html.twig' with {"serviceReports" : serviceReports} %}
+            {% if serviceReports | length > 0 %}
+                </div>
+            {% endif %}
+        </div>
+        <div class="tab-pane fade" id="nav-transportOrder" role="tabpanel" aria-labelledby="nav-contact-tab">Przewozy</div>
+    </div>
+
+{% endblock %}

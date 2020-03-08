@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h2>Lista stacji</h2>
+    {% for department in departments %}
+        <div class="card text-center m-md-2">
+            <div class="card-body">
+                <h5 class="card-title">Wypożyczalnia przy: {{ department.address }}</h5>
+                {% if isCurrentDepartment(department.address)  %}
+                <a href="{{ url("equipment_index", {"id": department.id}) }}" class="card-link">Zobacz szczegóły</a>
+                {% endif %}
+            </div>
+        </div>
+    {% else %}
+        <span class="badge badge-pill badge-info">Ups, nie ma żadnej dostępnej stacji :(</span>
+    {% endfor %}
+{% endblock %}

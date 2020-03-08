@@ -1,0 +1,62 @@
+{% set counter = 0 %}
+{% for report in serviceReports %}
+    {% set counter = counter +1 %}
+
+    {% if counter == 1%}
+        <div class="card" xmlns="http://www.w3.org/1999/html">
+            <div class="card-header" id="heading{{ report.id }}">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ report.id }}" aria-expanded="true" aria-controls="collapse{{ report.id }}">
+                        Zlecenie przeglądu #{{ counter }}
+                    </button>
+                </h2>
+            </div>
+
+            <div id="collapse{{ report.id }}" class="collapse show" aria-labelledby="heading{{ report.id }}" data-parent="#accordionExample">
+                <div class="card-body">
+                    <h5 class="card-title">{{ report.equipments[0].name }}</h5>
+                    <p class="card-text">{{ report.equipments[0].description }}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item font-weight-light">Rodzaj: {{ report.equipments[0].type.type }}</li>
+                    <li class="list-group-item">Przebieg: {{ report.equipments[0].milleage }} km</li>
+                </ul>
+                <div class="card-body">
+                    <form class="form-inline float-right mb-2" action="{{ url("serviceman_assignservice", {"id" : report.id}) }}" method="post">
+                            <button type="submit" class="btn btn-outline-success mt-2">Przyjmij zlecenie</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="card">
+            <div class="card-header" id="heading{{ report.id }}">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse{{ report.id }}" aria-expanded="false" aria-controls="collapse{{ report.id }}">
+                        Zlecenie przeglądu #{{ counter }}
+                    </button>
+                </h2>
+            </div>
+            <div id="collapse{{ report.id }}" class="collapse" aria-labelledby="heading{{ report.id }}" data-parent="#accordionExample">
+                <div class="card-body">
+                    <h5 class="card-title">{{ report.equipments[0].name }}</h5>
+                    <p class="card-text">{{ report.equipments[0].description }}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item font-weight-light">Rodzaj: {{ report.equipments[0].type.type }}</li>
+                    <li class="list-group-item">Przebieg: {{ report.equipments[0].milleage }} km</li>
+                </ul>
+                <div class="card-body">
+                    <form class="form-inline float-right mb-2" action="{{ url("serviceman_assignservice", {"id" : report.id}) }}" method="post">
+                        <button type="submit" class="btn btn-outline-success mt-2">Przyjmij zlecenie</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+{% else %}
+    <div class="alert alert-primary" role="alert">
+        Obecnie nie ma żadnych dostępnych zgłoszeń awarii.</a>
+    </div>
+{% endfor %}

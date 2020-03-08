@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h2>Przyjęte zlecenia przeglądu</h2>
+    {% set counter = 0 %}
+    <div class="accordion" id="accordionExample">
+        {% for report in serviceReports %}
+            {% set counter = counter +1 %}
+
+            {% if counter == 1%}
+                <div class="card" xmlns="http://www.w3.org/1999/html">
+                    <div class="card-header" id="heading{{ report.id }}">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ report.id }}" aria-expanded="true" aria-controls="collapse{{ report.id }}">
+                                Zgłoszenie przeglądu #{{ counter }}
+                            </button>
+                        </h2>
+                    </div>
+
+                    <div id="collapse{{ report.id }}" class="collapse show" aria-labelledby="heading{{ report.id }}" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <form class="form-group mb-2" action="{{ url("serviceman_finishservicereport", {"id": report.id}) }}" method="post">
+                                <p class="card-text">Data zgłoszenia: {{ report.created_at | date("Y-m-d H:i") }}</p>
+                                <p class="card-text">Wiadomość zlecenia: <strong>{{ report.message }}</strong></p>
+                                <div class="list-group">
+                                    <button type="button" class="list-group-item list-group-item-action active">
+                                        Sprzęt oczekujący na przegląd
+                                    </button>
+                                    <select multiple class="form-control mb-2" style="width: 100%" id="order_equipments">
+                                        {% for equipment in report.equipments %}
+                                                <option value="{{ equipment.id }}">{{ equipment.name }}</option>
+                                        {% endfor %}
+                                    </select>
+
+                                </div>
+                                <!-- Button on card -->
+                                <button type="submit" name="repairButton" value="true" class="btn btn-outline-success float-right mt-2 mb-2 mr-2">Napraw</button>
+                                <!-- End of button -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="card">
+                    <div class="card-header" id="heading{{ report.id }}">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse{{ report.id }}" aria-expanded="false" aria-controls="collapse{{ report.id }}">
+                                Zgłoszenie przeglądu #{{ counter }}
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapse{{ report.id }}" class="collapse" aria-labelledby="heading{{ report.id }}" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <form class="form-group mb-2" action="{{ url("serviceman_finishservicereport", {"id": report.id}) }}" method="post">
+                                <p class="card-text">Wiadomość zgłoszenia: <strong>{{ report.message }}</strong></p>
+                                <div class="list-group">
+                                    <button type="button" class="list-group-item list-group-item-action active">
+                                        Sprzęt oczekujący na przegląd
+                                    </button>
+                                    <select multiple class="form-control mb-2" style="width: 100%" id="damage_equipments">
+                                        {% for equipment in report.equipments %}
+                                                <option value="{{ equipment.id }}">{{ equipment.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <!-- Button on card -->
+                                <button type="submit" name="repairButton" value="true" class="btn btn-outline-success float-right mt-2 mb-2 mr-2">Napraw</button>
+                                <!-- End of button -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+        {% else %}
+            <div class="alert alert-primary" role="alert">
+                Obecnie nie masz żadnych dostępnych zleceń przeglądu.
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

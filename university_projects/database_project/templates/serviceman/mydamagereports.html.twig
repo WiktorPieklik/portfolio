@@ -1,0 +1,158 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h2>Przyjęte zgłoszenia awarii</h2>
+    {% set counter = 0 %}
+    <div class="accordion" id="accordionExample">
+    {% for report in damageReports %}
+        {% set counter = counter +1 %}
+
+        {% if counter == 1%}
+            <div class="card" xmlns="http://www.w3.org/1999/html">
+                <div class="card-header" id="heading{{ report.id }}">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ report.id }}" aria-expanded="true" aria-controls="collapse{{ report.id }}">
+                            Zgłoszenie awarii #{{ counter }}
+                        </button>
+                    </h2>
+                </div>
+
+                <div id="collapse{{ report.id }}" class="collapse show" aria-labelledby="heading{{ report.id }}" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <form class="form-group mb-2" action="{{ url("serviceman_handleequipments") }}" method="post">
+                            <h5 class="card-title">ID użytkownika: {{ report.attachedOrder.user.id }}</h5>
+                            <p class="card-text">Email użytkownika: {{ report.attachedOrder.user.email}}</p>
+                            <p class="card-text">Data zgłoszenia: {{ report.created_at | date("Y-m-d H:i") }}</p>
+                            <p class="card-text">Wiadomość zgłoszenia: <strong>{{ report.message }}</strong></p>
+                            <div class="list-group">
+                                <button type="button" class="list-group-item list-group-item-action active">
+                                    Sprzęty oczekujące na naprawe
+                                </button>
+                                <select multiple class="form-control mb-2" style="width: 100%" id="order_equipments" name="damage_equipments[]">
+                                    {% set leftEquipments = 0 %}
+                                    {% for equipment in report.equipments %}
+                                        {% if equipment.status == "status_damaged" %}
+                                            {% set leftEquipments = leftEquipments +1 %}
+                                        <option value="{{ equipment.id }}">{{ equipment.name }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                                <small id="equipmentHelp" class="form-text text-muted">Wybierz sprzęt, który chcesz naprawić/zutylizować (wciśnij ctrl by wybrać kilka opcji)</small>
+
+                            </div>
+                            <!-- Buttons on card -->
+                            {% if leftEquipments == 0 %}
+                                {{ redirect("serviceman_finishdamagereport", {"id" : report.id}) }}
+                            {% else %}
+                            <button type="button" class="btn btn-outline-danger mt-2 mb-2 float-right" data-toggle="modal" data-target="#repairModal">
+                                Utylizuj
+                            </button>
+                            <button type="submit" name="repairButton" value="true" class="btn btn-outline-success float-right mt-2 mr-2">Napraw</button>
+                            <!-- End of buttons -->
+                            {% endif %}
+                            <!-- Repair Modal Body -->
+                            <div class="modal fade" id="repairModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Utylizacja sprzętu</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            Czy na pewno chcesz zutylizować sprzęt?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" name="utilizeButton" value="true" class="btn btn-primary">Tak</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End of Repair Modal Body -->
+                        </form>
+                        <button type="button" class="list-group-item list-group-item-action active mt-3">
+                            Wszystkie zgłoszone sprzęty
+                        </button>
+                        {% for equipment in report.equipments %}
+                            <button type="button" class="list-group-item list-group-item-action">{{ equipment.name }}</button>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="card">
+                <div class="card-header" id="heading{{ report.id }}">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse{{ report.id }}" aria-expanded="false" aria-controls="collapse{{ report.id }}">
+                            Zgłoszenie awarii #{{ counter }}
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapse{{ report.id }}" class="collapse" aria-labelledby="heading{{ report.id }}" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <form class="form-group mb-2" action="{{ url("serviceman_handleequipments") }}" method="post">
+                            <p class="card-text">Email użytkownika: {{ report.attachedOrder.user.email}}</p>
+                            <p class="card-text">Data zgłoszenia: {{ report.created_at | date("Y-m-d H:i") }}</p>
+                            <p class="card-text">Wiadomość zgłoszenia: <strong>{{ report.message }}</strong></p>
+                            <div class="list-group">
+                                <button type="button" class="list-group-item list-group-item-action active">
+                                    Sprzęty oczekujące na naprawe
+                                </button>
+                                <select multiple class="form-control mb-2" style="width: 100%" id="damage_equipments" name="damage_equipments[]">
+                                    {% set leftEquipments = 0 %}
+                                    {% for equipment in report.equipments %}
+                                        {% if equipment.status == "status_damaged" %}
+                                            {% set leftEquipments = leftEquipments +1 %}
+                                            <option value="{{ equipment.id }}">{{ equipment.name }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                                <small id="equipmentHelp" class="form-text text-muted">Wybierz sprzęt, który chcesz naprawić/zutylizować (wciśnij ctrl by wybrać kilka opcji)</small>
+
+                            </div>
+                            <!-- Buttons on card -->
+                            {% if leftEquipments == 0 %}
+                                {{ redirect("serviceman_finishdamagereport", {"id" : report.id}) }}
+                            {% else %}
+                            <button type="button" class="btn btn-outline-danger mt-2 mb-2 float-right" data-toggle="modal" data-target="#repairModal{{ report.id }}">
+                                Utylizuj
+                            </button>
+                            <button type="submit" name="repairButton" value="true" class="btn btn-outline-success float-right mt-2 mr-2">Napraw</button>
+                            <!-- End of buttons -->
+                            {% endif %}
+
+                            <!-- Repair Modal Body -->
+                            <div class="modal fade" id="repairModal{{ report.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Utylizacja sprzętu</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            Czy na pewno chcesz zutylizować sprzęt?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" name="utilizeButton" value="true" class="btn btn-primary">Tak</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End of Repair Modal Body -->
+                        </form>
+                        <button type="button" class="list-group-item list-group-item-action active mt-3">
+                            Wszystkie zgłoszone sprzęty
+                        </button>
+                        {% for equipment in report.equipments %}
+                            <button type="button" class="list-group-item list-group-item-action">{{ equipment.name }}</button>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+    {% else %}
+        <div class="alert alert-primary" role="alert">
+            Obecnie nie ma żadnych dostępnych zgłoszeń awarii.
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}

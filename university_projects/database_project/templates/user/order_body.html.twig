@@ -1,0 +1,223 @@
+{% for order in myOrders %}
+    {% set counter = counter + 1 %}
+    {% if counter == 0 %}
+        <div class="card" xmlns="http://www.w3.org/1999/html">
+            <div class="card-header" id="heading{{ order.id }}">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ order.id }}" aria-expanded="true" aria-controls="collapse{{ order.id }}">
+                        {{ title2 }} #{{ counter + 1 }}
+                    </button>
+                </h2>
+            </div>
+
+            <div id="collapse{{ order.id }}" class="collapse show" aria-labelledby="heading{{ order.id }}" data-parent="#accordionExample">
+                <div class="card-body">
+                    <p>Stacja początkowa: {{ order.startDepartment.address }} </p>
+                    <p>Stacja końcowa: {{ order.endDepartment.address | default("brak") }}</p>
+
+                    {% if isOrder %}
+                    <p>Data rozpoczęcia: {{ order.created_at | date("Y-m-d H:i")}}</p>
+                    <p>Data zakończenia: {{ dateOrDefault(order.finished_at, "brak") }}</p>
+                    {% else %}
+                    <p>Data rezerwacji: {{ order.reserved_at | date("Y-m-d H:i") }}</p>
+                    {% endif %}
+
+                    <p>Cena końcowa: {{ order.price | default(0)}} zł</p>
+                    <div class="list-group">
+                        <button type="button" class="list-group-item list-group-item-action active">
+                            {{ title1 }} sprzęty
+                        </button>
+                        {% for equipment in order.equipments %}
+                            <button type="button" class="list-group-item list-group-item-action">{{ equipment.name }}</button>
+                        {% endfor %}
+                    </div>
+
+                    {% if isOrder and isReturn %}
+                    <form class="form-inline mt-2" action="{{ url("user_finishorder", {"id": order.id})}}" method="post">
+                        <label class="my-1 mr-2" for="returnOrder">Zwróć do stacji</label>
+                        <select class="custom-select my-1 mr-sm-2" name="returnOrder">
+                            {% for department in availableDepartments(order) %}
+                            <option value="{{ department.id }}">{{ department.address }}</option>
+                            {% endfor %}
+                        </select>
+                        <button type="submit" class="btn btn-primary my-1">Zwróc</button>
+                        <p>
+                            <a class="btn btn-danger ml-2 mt-3" data-toggle="collapse" href="#damageReport" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                Zgłoś awarię
+                            </a>
+                        </p>
+                    </form>
+
+                    <div class="collapse" id="damageReport">
+                        <div class="card card-body">
+                            <form class="form-inline" action="{{ url("user_damagereport", {"id": order.id}) }}" method="post">
+                                <div class="form-group">
+                                    <label for="order_equipments" class="mb-1">Wybierz zepsuty sprzęt (wciśnij ctrl by wybrać kilka opcji)</label>
+                                    <select multiple class="form-control mb-2" style="width: 100%" id="order_equipments" name="order_equipments[]">
+                                        {% for equipment in order.equipments %}
+                                        <option value="{{ equipment.id }}">{{ equipment.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="form-group" style="width: 100%">
+                                    <label class="my-1 mr-2" for="returnOrderDamage">Zwróć do stacji</label>
+                                        <select class="custom-select my-1 mr-sm-2" name="returnOrderDamageDepartmentId">
+                                            {% for department in availableDepartments(order) %}
+                                                <option value="{{ department.id }}">{{ department.address }}</option>
+                                            {% endfor %}
+                                        </select>
+                                </div>
+                                <input type="text" class="form-control" style="width: 100%" name="message" placeholder="Opisz co się zepsuło...">
+                                <button type="submit" class="btn btn-outline-secondary mt-2">Zgłoś awarię</button>
+                            </form>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if not isOrder %}
+                        <div class="container mt-3">
+                            <button type="button" class="btn btn-primary btn-sm float-right mb-2" data-toggle="modal" data-target="#orderModal">
+                                Złóż zamówienie
+                            </button>
+                        </div>
+
+                        <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Składanie zamówienia</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Czy na pewno chcesz złożyć zamówienie na:
+                                        {% for equipment in order.equipments %}
+                                             <br /> {{ equipment.name }}
+                                        {% endfor %}?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <form class="float-left mr-2" action="{{ url("user_makeorder", {"id": getUserId()}) }}" method="post">
+                                            <button type="submit" class="btn btn-primary">Tak</button>
+                                            <input type="hidden" name="isReservation" value=true>
+                                            <input type="hidden" name="reservationId" value={{ order.id }}>
+                                        </form>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="card">
+            <div class="card-header" id="heading{{ order.id }}">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse{{ order.id }}" aria-expanded="false" aria-controls="collapse{{ order.id }}">
+                        {{ title2 }} #{{ counter + 1 }}
+                    </button>
+                </h2>
+            </div>
+            <div id="collapse{{ order.id }}" class="collapse" aria-labelledby="heading{{ order.id }}" data-parent="#accordionExample">
+                <div class="card-body">
+                    <p>Stacja początkowa: {{ order.startDepartment.address }} </p>
+                    <p>Stacja końcowa: {{ order.endDepartment.address | default("brak") }}</p>
+                    <p>Data rozpoczęcia: {{ order.created_at | date("Y-m-d H:i")}}</p>
+                    <p>Data zakończenia: {{ dateOrDefault(order.finished_at, "brak") }}</p>
+                    <p>Cena końcowa: {{ order.price | default(0)}} zł</p>
+                    <div class="list-group">
+                        <button type="button" class="list-group-item list-group-item-action active">
+                            {{ title1 }} sprzęty
+                        </button>
+                        {% for equipment in order.equipments %}
+                            <button type="button" class="list-group-item list-group-item-action">{{ equipment.name }}</button>
+                        {% endfor %}
+
+                        {% if isOrder and isReturn %}
+                            <form class="form-inline mt-2" action="{{ url("user_finishorder", {"id": order.id})}}" method="post">
+                                <label class="my-1 mr-2" for="returnOrder">Zwróć do stacji</label>
+                                <select class="custom-select my-1 mr-sm-2" name="returnOrder">
+                                    {% for department in availableDepartments(order) %}
+                                        <option value="{{ department.id }}">{{ department.address }}</option>
+                                    {% endfor %}
+                                </select>
+                                <button type="submit" class="btn btn-primary my-1">Zwróć</button>
+                                <p>
+                                    <a class="btn btn-danger ml-2 mt-3" data-toggle="collapse" href="#damageReport" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        Zgłoś awarię
+                                    </a>
+                                </p>
+                            </form>
+
+                            <div class="collapse" id="damageReport">
+                                <div class="card card-body">
+                                    <form class="form-inline" action="{{ url("user_damagereport", {"id": order.id}) }}" method="post">
+                                        <div class="form-group">
+                                            <label for="order_equipments" class="mb-1">Wybierz zepsuty sprzęt (wciśnij ctrl by wybrać kilka opcji)</label>
+                                            <select multiple class="form-control mb-2" style="width: 100%" id="order_equipments" name="order_equipments[]">
+                                                {% for equipment in order.equipments %}
+                                                    <option value="{{ equipment.id }}">{{ equipment.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="form-group" style="width: 100%">
+                                            <label class="my-1 mr-2" for="returnOrderDamage">Zwróć do stacji</label>
+                                            <select class="custom-select my-1 mr-sm-2" name="returnOrderDamageDepartmentId">
+                                                {% for department in availableDepartments(order) %}
+                                                    <option value="{{ department.id }}">{{ department.address }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <input type="text" class="form-control" style="width: 100%" name="message" placeholder="Opisz co się zepsuło...">
+                                        <button type="submit" class="btn btn-outline-secondary mt-2">Zgłoś awarię</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        {% endif %}
+
+                        {% if not isOrder %}
+                            <div class="container mt-3">
+                                <button type="button" class="btn btn-primary btn-sm float-right mb-2" data-toggle="modal" data-target="#orderModal2">
+                                    Złóż zamówienie
+                                </button>
+                            </div>
+
+                            <div class="modal fade" id="orderModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Składanie zamówienia</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Czy na pewno chcesz złożyć zamówienie na:
+                                            {% for equipment in order.equipments %}
+                                        <br /> {{ equipment.name }}
+                                            {% endfor %}?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <form class="float-left mr-2" action="{{ url("user_makeorder", {"id": getUserId()}) }}" method="post">
+                                                <button type="submit" class="btn btn-primary">Tak</button>
+                                                <input type="hidden" name="isReservation" value=true>
+                                                <input type="hidden" name="reservationId" value={{ order.id }}>
+                                            </form>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% else %}
+    <div class="alert alert-primary" role="alert">
+        Ups :( <br>{{ description }} Zobacz czy coś Cie nie <a href="{{ url("department_index") }}" class="alert-link">interesuje</a>.
+    </div>
+{% endfor %}

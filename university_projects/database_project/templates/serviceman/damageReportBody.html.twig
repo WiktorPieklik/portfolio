@@ -1,0 +1,69 @@
+{% set counter = 0 %}
+{% for report in damageReports %}
+    {% set counter = counter +1 %}
+
+    {% if counter == 1%}
+            <div class="card" xmlns="http://www.w3.org/1999/html">
+                <div class="card-header" id="heading{{ report.id }}">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ report.id }}" aria-expanded="true" aria-controls="collapse{{ report.id }}">
+                            Zgłoszenie awarii #{{ counter }}
+                        </button>
+                    </h2>
+                </div>
+
+                <div id="collapse{{ report.id }}" class="collapse show" aria-labelledby="heading{{ report.id }}" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <h5 class="card-title">ID użytkownika: {{ report.attachedOrder.user.id }}</h5>
+                        <p class="card-text">Email użytkownika: {{ report.attachedOrder.user.email}}</p>
+                        <p class="card-text">Data zgłoszenia: {{ report.created_at | date("Y-m-d H:i") }}</p>
+                        <p class="card-text">Wiadomość zgłoszenia: <strong>{{ report.message }}</strong></p>
+                        <div class="list-group">
+                            <button type="button" class="list-group-item list-group-item-action active">
+                                Zniszczone sprzęty
+                            </button>
+                            {% for equipment in report.equipments %}
+                                <button type="button" class="list-group-item list-group-item-action">{{ equipment.name }}</button>
+                            {% endfor %}
+                        </div>
+                        <form class="form-inline float-right mb-2" action="{{ url("serviceman_assigndamage", {"id" : report.id}) }}" method="post">
+                            <button type="submit" class="btn btn-outline-success mt-2">Przyjmij zgłoszenie</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    {% else %}
+        <div class="card">
+            <div class="card-header" id="heading{{ report.id }}">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse{{ report.id }}" aria-expanded="false" aria-controls="collapse{{ report.id }}">
+                        Zgłoszenie awarii #{{ counter }}
+                    </button>
+                </h2>
+            </div>
+            <div id="collapse{{ report.id }}" class="collapse" aria-labelledby="heading{{ report.id }}" data-parent="#accordionExample">
+                <div class="card-body">
+                    <p class="card-text">Email użytkownika: {{ report.attachedOrder.user.email}}</p>
+                    <p class="card-text">Data zgłoszenia: {{ report.created_at | date("Y-m-d H:i") }}</p>
+                    <p class="card-text">Wiadomość zgłoszenia: {{ report.message }}</p>
+                    <div class="list-group">
+                        <button type="button" class="list-group-item list-group-item-action active">
+                            Zniszczone sprzęty
+                        </button>
+                        {% for equipment in report.equipments %}
+                            <button type="button" class="list-group-item list-group-item-action">{{ equipment.name }}</button>
+                        {% endfor %}
+                    </div>
+                    <form class="form-inline float-right mb-2" action="{{ url("serviceman_assigndamage", {"id": report.id}) }}" method="post">
+                        <button type="submit" class="btn btn-outline-success mt-2">Przyjmij zgłoszenie</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+{% else %}
+    <div class="alert alert-primary" role="alert">
+        Obecnie nie ma żadnych dostępnych zgłoszeń awarii.</a>
+    </div>
+{% endfor %}
